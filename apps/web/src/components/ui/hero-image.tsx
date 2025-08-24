@@ -2,18 +2,15 @@ import Image from 'next/image';
 
 export default function HeroImage() {
   return (
-    <div className="flex w-full lg:w-1/2">
-      <div className="relative aspect-square w-full overflow-hidden rounded-2xl sm:rounded-3xl">
-        <Image
-          alt="Imagem do portfólio"
-          className="object-cover transition-transform duration-300 hover:scale-105"
-          fill
-          loading="lazy"
-          priority={false}
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          src="/image.png"
-        />
-      </div>
+    <div className="flex w-full gap-4 sm:gap-6 lg:w-1/2">
+      <Image
+        alt="Hero Image"
+        className="h-auto w-full rounded-3xl object-cover"
+        height={200}
+        src="/image.png"
+        style={{ color: 'transparent' }}
+        width={200}
+      />
     </div>
   );
 }

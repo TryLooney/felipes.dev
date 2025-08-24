@@ -1,15 +1,15 @@
 export default function HeroContent() {
   return (
-    <div className="relative w-full">
-      <h1 className="text-2xl font-semibold leading-tight text-foreground sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
+    <div className="relative">
+      <h1 className="font-medium text-4xl text-foreground leading-tight sm:text-5xl md:text-6xl lg:text-[48px]">
         Onde
       </h1>
-      <div className="mt-1 sm:mt-2">
-        <h2 className="max-w-full text-2xl font-semibold leading-tight tracking-tight text-foreground sm:max-w-[400px] sm:text-3xl md:max-w-[450px] md:text-4xl lg:max-w-[500px] lg:text-5xl xl:text-6xl">
+      <div className="mt-2">
+        <h2 className="max-w-[500px] font-medium text-4xl text-foreground leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-[48px]">
           tecnologia de ponta
-          <br className="hidden sm:block" />
+          <br />
           encontra
-          <br className="hidden sm:block" />
+          <br />
           resultados
         </h2>
       </div>
