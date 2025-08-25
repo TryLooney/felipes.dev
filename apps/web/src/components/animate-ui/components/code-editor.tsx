@@ -2,11 +2,29 @@
 
 import { type UseInViewOptions, useInView } from 'motion/react';
 import { useTheme } from 'next-themes';
-import * as React from 'react';
+import {
+  type ComponentProps,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { CopyButton } from '@/components/animate-ui/buttons/copy';
 import { cn } from '@/lib/utils';
 
-type CodeEditorProps = Omit<React.ComponentProps<'div'>, 'onCopy'> & {
+type HighlightedContentProps = {
+  html: string;
+  className?: string;
+};
+
+function HighlightedContent({ html, className }: HighlightedContentProps) {
+  return (
+    // biome-ignore lint: Safe HTML from Shiki syntax highlighter
+    <div className={className} dangerouslySetInnerHTML={{ __html: html }} />
+  );
+}
+
+type CodeEditorProps = Omit<ComponentProps<'div'>, 'onCopy'> & {
   children: string;
   lang: string;
   themes?: {
@@ -17,7 +35,7 @@ type CodeEditorProps = Omit<React.ComponentProps<'div'>, 'onCopy'> & {
   delay?: number;
   header?: boolean;
   dots?: boolean;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   cursor?: boolean;
   inView?: boolean;
   inViewMargin?: UseInViewOptions['margin'];
@@ -28,6 +46,78 @@ type CodeEditorProps = Omit<React.ComponentProps<'div'>, 'onCopy'> & {
   onDone?: () => void;
   onCopy?: (content: string) => void;
 };
+
+type AnimationOptions = {
+  code: string;
+  duration: number;
+  delay: number;
+  isInView: boolean;
+  writing: boolean;
+  onDone?: () => void;
+};
+
+function useCodeAnimation(options: AnimationOptions) {
+  const { code, duration, delay, isInView, writing, onDone } = options;
+  const [visibleCode, setVisibleCode] = useState('');
+  const [isDone, setIsDone] = useState(false);
+  const indexRef = useRef(0);
+  const isAnimatingRef = useRef(false);
+
+  useEffect(() => {
+    // Reset states when effect runs
+    setVisibleCode('');
+    setIsDone(false);
+    indexRef.current = 0;
+    isAnimatingRef.current = false;
+
+    if (!writing) {
+      setVisibleCode(code);
+      onDone?.();
+      return;
+    }
+
+    if (!(code.length && isInView)) {
+      return;
+    }
+
+    // Prevent multiple animations from running simultaneously
+    if (isAnimatingRef.current) {
+      return;
+    }
+
+    isAnimatingRef.current = true;
+    const characters = Array.from(code);
+    const MILLISECONDS_PER_SECOND = 1000;
+    const totalDuration = duration * MILLISECONDS_PER_SECOND;
+    const interval = totalDuration / characters.length;
+    let intervalId: NodeJS.Timeout;
+
+    const DELAY_MULTIPLIER = 1000;
+    const timeout = setTimeout(() => {
+      intervalId = setInterval(() => {
+        if (indexRef.current < characters.length) {
+          const currentIndex = indexRef.current;
+          indexRef.current += 1;
+
+          setVisibleCode((prev) => prev + characters[currentIndex]);
+        } else {
+          clearInterval(intervalId);
+          setIsDone(true);
+          isAnimatingRef.current = false;
+          onDone?.();
+        }
+      }, interval);
+    }, delay * DELAY_MULTIPLIER);
+
+    return () => {
+      clearTimeout(timeout);
+      clearInterval(intervalId);
+      isAnimatingRef.current = false;
+    };
+  }, [code, duration, delay, isInView, writing, onDone]);
+
+  return { visibleCode, isDone };
+}
 
 function CodeEditor({
   children: code,
@@ -54,11 +144,8 @@ function CodeEditor({
   ...props
 }: CodeEditorProps) {
   const { resolvedTheme } = useTheme();
-
-  const editorRef = React.useRef<HTMLDivElement>(null);
-  const [visibleCode, setVisibleCode] = React.useState('');
-  const [highlightedCode, setHighlightedCode] = React.useState('');
-  const [isDone, setIsDone] = React.useState(false);
+  const editorRef = useRef<HTMLDivElement>(null);
+  const [highlightedCode, setHighlightedCode] = useState('');
 
   const inViewResult = useInView(editorRef, {
     once: inViewOnce,
@@ -66,8 +153,19 @@ function CodeEditor({
   });
   const isInView = !inView || inViewResult;
 
-  React.useEffect(() => {
-    if (!(visibleCode.length && isInView)) return;
+  const { visibleCode, isDone } = useCodeAnimation({
+    code,
+    duration,
+    delay,
+    isInView,
+    writing,
+    onDone,
+  });
+
+  useEffect(() => {
+    if (!(visibleCode.length && isInView)) {
+      return;
+    }
 
     const loadHighlightedCode = async () => {
       try {
@@ -83,63 +181,23 @@ function CodeEditor({
         });
 
         setHighlightedCode(highlighted);
-      } catch (e) {
-        console.error(`Language "${lang}" could not be loaded.`, e);
+      } catch {
+        // Language loading failed - fallback to plain text
+        setHighlightedCode(`<pre><code>${visibleCode}</code></pre>`);
       }
     };
 
     loadHighlightedCode();
-  }, [
-    lang,
-    themes,
-    writing,
-    isInView,
-    duration,
-    delay,
-    visibleCode,
-    resolvedTheme,
-  ]);
+  }, [lang, themes, isInView, visibleCode, resolvedTheme]);
 
-  React.useEffect(() => {
-    if (!writing) {
-      setVisibleCode(code);
-      onDone?.();
-      return;
+  useEffect(() => {
+    if (visibleCode && editorRef.current) {
+      editorRef.current.scrollTo({
+        top: editorRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
     }
-
-    if (!(code.length && isInView)) return;
-
-    const characters = Array.from(code);
-    let index = 0;
-    const totalDuration = duration * 1000;
-    const interval = totalDuration / characters.length;
-    let intervalId: NodeJS.Timeout;
-
-    const timeout = setTimeout(() => {
-      intervalId = setInterval(() => {
-        if (index < characters.length) {
-          setVisibleCode((prev) => {
-            const currentIndex = index;
-            index += 1;
-            return prev + characters[currentIndex];
-          });
-          editorRef.current?.scrollTo({
-            top: editorRef.current?.scrollHeight,
-            behavior: 'smooth',
-          });
-        } else {
-          clearInterval(intervalId);
-          setIsDone(true);
-          onDone?.();
-        }
-      }, interval);
-    }, delay * 1000);
-
-    return () => {
-      clearTimeout(timeout);
-      clearInterval(intervalId);
-    };
-  }, [code, duration, delay, isInView, writing, onDone]);
+  }, [visibleCode]);
 
   return (
     <div
@@ -169,13 +227,12 @@ function CodeEditor({
               )}
             >
               {icon ? (
-                <div
-                  className="text-muted-foreground [&_svg]:size-3.5"
-                  dangerouslySetInnerHTML={
-                    typeof icon === 'string' ? { __html: icon } : undefined
-                  }
-                >
-                  {typeof icon !== 'string' ? icon : null}
+                <div className="text-muted-foreground [&_svg]:size-3.5">
+                  {typeof icon === 'string' ? (
+                    <HighlightedContent html={icon} />
+                  ) : (
+                    icon
+                  )}
                 </div>
               ) : null}
               <figcaption className="flex-1 truncate text-[13px] text-muted-foreground">
@@ -206,21 +263,21 @@ function CodeEditor({
         )
       )}
       <div
-        className="relative h-[calc(100%-2.75rem)] w-full flex-1 overflow-auto bg-black/25 p-4 font-mono text-sm"
+        className="relative h-[calc(100%-2.75rem)] w-full flex-1 overflow-x-auto overflow-y-auto bg-black/25 p-4 font-mono text-sm"
         ref={editorRef}
         style={{
-          scrollbarWidth: 'thin',
-          scrollbarColor: 'rgba(255,255,255,0.3) transparent',
+          maxHeight: 'calc(100% - 2.75rem)',
         }}
       >
-        <div
+        <HighlightedContent
           className={cn(
+            '[&>pre]:!m-0 [&>pre]:!p-0 [&>pre]:!bg-transparent [&>pre]:!border-none [&>pre]:!overflow-hidden [&>pre]:!max-w-none min-h-0 w-0 min-w-0',
             '[&>pre,_&_code]:!bg-transparent [&_code]:!text-[13px] [&>pre,_&_code]:border-none [&>pre,_&_code]:[background:transparent_!important]',
             cursor &&
               !isDone &&
               "[&_.line:last-of-type::after]:-translate-px [&_.line:last-of-type::after]:inline-block [&_.line:last-of-type::after]:w-[1ch] [&_.line:last-of-type::after]:animate-pulse [&_.line:last-of-type::after]:content-['|']"
           )}
-          dangerouslySetInnerHTML={{ __html: highlightedCode }}
+          html={highlightedCode}
         />
       </div>
     </div>

@@ -204,12 +204,38 @@ body {
 /* Code Editor Scroll Fix */
 [data-slot="code-editor"] pre {
   white-space: pre !important;
-  overflow-x: auto !important;
-  max-width: 100% !important;
+  overflow: hidden !important;
+  width: max-content !important;
+  max-width: none !important;
   word-wrap: normal !important;
 }
 
 [data-slot="code-editor"] code {
   white-space: pre !important;
   word-wrap: normal !important;
+  display: block !important;
+}
+
+/* Code Editor Scrollbar Styles */
+[data-slot="code-editor"] > div:last-child {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+[data-slot="code-editor"] > div:last-child::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+[data-slot="code-editor"] > div:last-child::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+[data-slot="code-editor"] > div:last-child::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+[data-slot="code-editor"] > div:last-child::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5);
 }

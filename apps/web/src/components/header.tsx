@@ -48,8 +48,10 @@ export const Header = () => {
                 className="flex items-center space-x-2"
                 href="/"
               >
-                <div className="flex size-10 items-center justify-center rounded-full bg-black">
-                  <span className="font-black font-mono">&lt;f&gt;</span>
+                <div className="flex size-10 items-center justify-center rounded-full bg-black dark:bg-white">
+                  <span className="font-black font-mono text-white dark:text-black">
+                    &lt;f&gt;
+                  </span>
                 </div>
                 <span>felipes.dev</span>
               </Link>
@@ -98,12 +100,28 @@ export const Header = () => {
               <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                 <Button
                   asChild
-                  className="rounded-full bg-gradient-to-r from-primary to-primary/80 shadow-lg transition-all duration-300 hover:scale-105 hover:from-primary/90 hover:to-primary/70 hover:shadow-xl"
+                  className={cn(
+                    'rounded-full bg-gradient-to-r from-primary to-primary/80 shadow-lg transition-all duration-300 hover:scale-105 hover:from-primary/90 hover:to-primary/70 hover:shadow-xl',
+                    isScrolled && 'lg:hidden'
+                  )}
                   size="sm"
                 >
                   <Link className="flex items-center gap-2" href="#contact">
                     <Whatsapp className="h-4 w-4" />
                     <span>Vamos Conversar</span>
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  className={cn(
+                    'rounded-full transition-all duration-300',
+                    isScrolled ? 'lg:inline-flex' : 'hidden'
+                  )}
+                  size="sm"
+                >
+                  <Link className="flex items-center gap-2" href="#contact">
+                    <Whatsapp className="h-4 w-4" />
+                    <span>Contato</span>
                   </Link>
                 </Button>
               </div>
