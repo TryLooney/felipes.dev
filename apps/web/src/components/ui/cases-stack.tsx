@@ -66,7 +66,7 @@ const cases = [
 
 export default function CasesStack() {
   return (
-    <div className="relative px-2 xs:px-4 sm:px-0">
+    <div className="relative w-full overflow-hidden px-4 xs:px-6 sm:px-0">
       <Swiper
         autoplay={{
           delay: 5000,
@@ -76,10 +76,10 @@ export default function CasesStack() {
         cardsEffect={{
           slideShadows: true,
           rotate: true,
-          perSlideOffset: 12,
-          perSlideRotate: 1,
+          perSlideOffset: 8,
+          perSlideRotate: 0.5,
         }}
-        className="h-auto w-full max-w-[90vw] sm:max-w-[1000px]"
+        className="h-auto w-full max-w-[85vw] sm:max-w-[1000px]"
         effect="cards"
         grabCursor={true}
         modules={[EffectCards, Autoplay, Navigation, Pagination]}
@@ -219,10 +219,10 @@ export default function CasesStack() {
       </Swiper>
 
       {/* Navigation Buttons - Hidden on mobile */}
-      <div className="swiper-button-prev-custom -translate-y-1/2 -left-6 sm:-left-12 absolute top-1/2 z-10 hidden h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-secondary/80 backdrop-blur-sm transition-all duration-300 hover:bg-secondary sm:flex">
+      <div className="swiper-button-prev-custom -translate-y-1/2 lg:-left-12 absolute top-1/2 left-2 z-10 hidden h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-secondary/80 backdrop-blur-sm transition-all duration-300 hover:bg-secondary sm:flex">
         <ArrowRight01 className="h-5 w-5 rotate-180 text-foreground" />
       </div>
-      <div className="swiper-button-next-custom -translate-y-1/2 -right-6 sm:-right-12 absolute top-1/2 z-10 hidden h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-secondary/80 backdrop-blur-sm transition-all duration-300 hover:bg-secondary sm:flex">
+      <div className="swiper-button-next-custom -translate-y-1/2 lg:-right-12 absolute top-1/2 right-2 z-10 hidden h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-secondary/80 backdrop-blur-sm transition-all duration-300 hover:bg-secondary sm:flex">
         <ArrowRight01 className="h-5 w-5 text-foreground" />
       </div>
 
