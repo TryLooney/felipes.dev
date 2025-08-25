@@ -76,7 +76,7 @@ export default function ContactSection() {
                     Email
                   </h4>
                   <p className="text-foreground/60 text-xs xs:text-sm">
-                    contato@felipes.dev
+                    luisfelipe.rs08x@gmail.com
                   </p>
                 </div>
                 <ArrowRight01 className="h-4 xs:h-5 w-4 xs:w-5 text-foreground/40 transition-transform duration-300 group-hover:translate-x-1" />

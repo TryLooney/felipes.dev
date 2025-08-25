@@ -68,17 +68,12 @@ export default function ClientSection() {
             <TooltipProvider>
               <Tooltip delayDuration={100}>
                 <TooltipTrigger>
-                  <Link
-                    className="flex items-center justify-center rounded-2xl bg-secondary p-3 xs:p-4 sm:p-6"
-                    href="https://instagram.com/felipes.dev"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
+                  <div className="flex cursor-not-allowed items-center justify-center rounded-2xl bg-secondary p-3 xs:p-4 opacity-50 sm:p-6">
                     <Instagram />
-                  </Link>
+                  </div>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Instagram</p>
+                  <p>Instagram (Indisponível)</p>
                 </TooltipContent>
               </Tooltip>
               <Tooltip delayDuration={100}>
@@ -100,7 +95,7 @@ export default function ClientSection() {
                 <TooltipTrigger>
                   <Link
                     className="flex items-center justify-center rounded-2xl bg-secondary p-3 xs:p-4 sm:p-6"
-                    href="https://twitter.com/felipesdev"
+                    href="https://x.com/felipesdev"
                     rel="noopener noreferrer"
                     target="_blank"
                   >
@@ -115,7 +110,7 @@ export default function ClientSection() {
                 <TooltipTrigger>
                   <Link
                     className="flex items-center justify-center rounded-2xl bg-secondary p-3 xs:p-4 sm:p-6"
-                    href="https://github.com/felipesdev"
+                    href="https://github.com/tryLooney"
                     rel="noopener noreferrer"
                     target="_blank"
                   >
