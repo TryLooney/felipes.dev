@@ -1,59 +1,134 @@
+import { View3D } from '../icons/3-d-view';
+import { Rocket } from '../icons/rocket';
+import { ServerStack01 } from '../icons/server-stack-01';
 import { CodeEditorDemo } from './code-editor-demo';
 
 export default function CodeSection() {
   return (
-    <section className="mt-4" style={{ opacity: 1, transform: 'none' }}>
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
-        {/* Coluna da esquerda - ocupa 1 espaço com 3 cards */}
-        <div className="flex h-full flex-col gap-6 lg:col-span-1">
-          <div className="group hover:-translate-y-1 relative flex-1 overflow-hidden rounded-[24px] bg-gradient-to-br from-secondary via-secondary/90 to-secondary/60 p-6 shadow-[0_8px_32px_rgba(0,0,0,0.08)] backdrop-blur-sm transition-all duration-500 ease-out hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] sm:p-8">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-            <div className="relative z-10">
-              <h4 className="mb-3 font-semibold text-foreground text-lg transition-colors duration-300 group-hover:text-primary">
-                Frontend
-              </h4>
-              <p className="font-normal text-base text-foreground/70 leading-relaxed transition-colors duration-300 group-hover:text-foreground/80">
-                React, Next.js, TypeScript e Tailwind CSS para interfaces
-                modernas
-              </p>
-            </div>
+    <section
+      className="mt-6 xs:mt-8 w-full overflow-hidden sm:mt-10 md:mt-12"
+      id="code"
+      style={{ opacity: 1, transform: 'none' }}
+    >
+      {/* Editor no topo */}
+      <div className="group relative mb-6 xs:mb-8 overflow-hidden rounded-2xl bg-gradient-to-b from-secondary to-secondary/20 p-4 xs:p-6 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset] transition-all duration-300 ease-out hover:shadow-lg sm:p-8 lg:hidden">
+        <div className="-right-5 -top-5 absolute z-10 h-40 w-40 rounded-full bg-gradient-to-b from-primary/10 to-card blur-md" />
+        <div className="relative z-10">
+          <div className="mb-4 xs:mb-6 flex items-center gap-4">
+            <h3 className="font-medium text-foreground text-xl xs:text-2xl transition-colors duration-300 group-hover:text-primary sm:text-3xl">
+              Código Limpo & Eficiente
+            </h3>
           </div>
-
-          <div className="group hover:-translate-y-1 relative flex-1 overflow-hidden rounded-[24px] bg-gradient-to-br from-secondary via-secondary/90 to-secondary/60 p-6 shadow-[0_8px_32px_rgba(0,0,0,0.08)] backdrop-blur-sm transition-all duration-500 ease-out hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] sm:p-8">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-            <div className="relative z-10">
-              <h4 className="mb-3 font-semibold text-foreground text-lg transition-colors duration-300 group-hover:text-primary">
-                Backend
-              </h4>
-              <p className="font-normal text-base text-foreground/70 leading-relaxed transition-colors duration-300 group-hover:text-foreground/80">
-                Node.js, APIs REST e bancos de dados para aplicações robustas
-              </p>
-            </div>
+          <div className="flex w-full justify-center overflow-hidden">
+            <CodeEditorDemo />
           </div>
+        </div>
+      </div>
 
-          <div className="group hover:-translate-y-1 relative flex-1 overflow-hidden rounded-[24px] bg-gradient-to-br from-secondary via-secondary/90 to-secondary/60 p-6 shadow-[0_8px_32px_rgba(0,0,0,0.08)] backdrop-blur-sm transition-all duration-500 ease-out hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] sm:p-8">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-            <div className="relative z-10">
-              <h4 className="mb-3 font-semibold text-foreground text-lg transition-colors duration-300 group-hover:text-primary">
-                DevOps
-              </h4>
-              <p className="font-normal text-base text-foreground/70 leading-relaxed transition-colors duration-300 group-hover:text-foreground/80">
-                Deploy automatizado, CI/CD e monitoramento de aplicações
-              </p>
+      {/* Layout desktop: editor à esquerda, cards à direita */}
+      <div className="hidden lg:flex lg:gap-12">
+        {/* Editor - Desktop */}
+        <div className="group relative flex-1 overflow-hidden rounded-2xl bg-gradient-to-b from-secondary to-secondary/20 p-8 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset] transition-all duration-300 ease-out hover:shadow-lg">
+          <div className="-right-5 -top-5 absolute z-10 h-40 w-40 rounded-full bg-gradient-to-b from-primary/10 to-card blur-md" />
+          <div className="relative z-10">
+            <div className="mb-6 flex items-center gap-4">
+              <h3 className="font-medium text-3xl text-foreground transition-colors duration-300 group-hover:text-primary">
+                Código Limpo & Eficiente
+              </h3>
+            </div>
+            <div className="flex w-full justify-center overflow-hidden">
+              <CodeEditorDemo />
             </div>
           </div>
         </div>
 
-        {/* Coluna da direita - ocupa 2 espaços */}
-        <div className="group hover:-translate-y-1 relative overflow-hidden rounded-[24px] bg-gradient-to-br from-secondary via-secondary/90 to-secondary/60 p-6 shadow-[0_8px_32px_rgba(0,0,0,0.08)] backdrop-blur-sm transition-all duration-500 ease-out hover:scale-[1.01] hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] sm:p-8 lg:col-span-2">
-          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-          <div className="relative z-10">
-            <h3 className="mb-6 font-semibold text-2xl text-foreground transition-colors duration-300 group-hover:text-primary sm:text-3xl">
-              Código Limpo & Eficiente
-            </h3>
-            <div className="flex justify-center">
-              <CodeEditorDemo />
+        {/* Cards - Desktop (coluna à direita) */}
+        <div className="flex w-80 flex-col gap-6">
+          <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-b from-secondary to-secondary/20 p-6 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset] transition-all duration-300 ease-out hover:shadow-lg">
+            <div className="-right-5 -top-5 absolute z-10 h-40 w-40 rounded-full bg-gradient-to-b from-primary/10 to-card blur-md" />
+            <div className="relative z-10">
+              <View3D className="mb-4 h-10 w-10" />
+              <h4 className="mb-3 font-medium text-foreground text-lg transition-colors duration-300 group-hover:text-primary">
+                Performance Otimizada
+              </h4>
+              <p className="font-normal text-foreground/30 text-sm leading-6 transition-colors duration-300 group-hover:text-foreground/50">
+                Código otimizado que carrega rapidamente e oferece uma
+                experiência fluida em qualquer dispositivo
+              </p>
             </div>
+          </div>
+
+          <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-b from-secondary to-secondary/20 p-6 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset] transition-all duration-300 ease-out hover:shadow-lg">
+            <div className="-right-5 -top-5 absolute z-10 h-40 w-40 rounded-full bg-gradient-to-b from-primary/10 to-card blur-md" />
+            <div className="relative z-10">
+              <ServerStack01 className="mb-4 h-10 w-10" />
+              <h4 className="mb-3 font-medium text-foreground text-lg transition-colors duration-300 group-hover:text-primary">
+                Código Limpo & Escalável
+              </h4>
+              <p className="font-normal text-foreground/30 text-sm leading-6 transition-colors duration-300 group-hover:text-foreground/50">
+                Arquitetura bem estruturada e código legível que facilita
+                manutenção e futuras expansões
+              </p>
+            </div>
+          </div>
+
+          <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-b from-secondary to-secondary/20 p-6 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset] transition-all duration-300 ease-out hover:shadow-lg">
+            <div className="-right-5 -top-5 absolute z-10 h-40 w-40 rounded-full bg-gradient-to-b from-primary/10 to-card blur-md" />
+            <div className="relative z-10">
+              <Rocket className="mb-4 h-10 w-10" />
+              <h4 className="mb-3 font-medium text-foreground text-lg transition-colors duration-300 group-hover:text-primary">
+                Segurança & Confiabilidade
+              </h4>
+              <p className="font-normal text-foreground/30 text-sm leading-6 transition-colors duration-300 group-hover:text-foreground/50">
+                Implementação de boas práticas de segurança e testes
+                automatizados para máxima confiabilidade
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Cards para mobile/tablet */}
+      <div className="grid grid-cols-1 gap-4 xs:gap-6 sm:grid-cols-2 lg:hidden lg:gap-8">
+        <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-b from-secondary to-secondary/20 p-4 xs:p-6 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset] transition-all duration-300 ease-out hover:shadow-lg sm:p-8">
+          <div className="-right-5 -top-5 absolute z-10 h-40 w-40 rounded-full bg-gradient-to-b from-primary/10 to-card blur-md" />
+          <div className="relative z-10">
+            <View3D className="mb-4 xs:mb-6 h-8 xs:h-10 w-8 xs:w-10 sm:h-12 sm:w-12" />
+            <h4 className="mb-3 xs:mb-4 font-medium text-foreground text-lg xs:text-xl transition-colors duration-300 group-hover:text-primary sm:text-2xl">
+              Performance Otimizada
+            </h4>
+            <p className="font-normal text-foreground/30 text-sm xs:text-base leading-6 transition-colors duration-300 group-hover:text-foreground/50">
+              Código otimizado que carrega rapidamente e oferece uma experiência
+              fluida em qualquer dispositivo
+            </p>
+          </div>
+        </div>
+
+        <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-b from-secondary to-secondary/20 p-4 xs:p-6 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset] transition-all duration-300 ease-out hover:shadow-lg sm:p-8">
+          <div className="-right-5 -top-5 absolute z-10 h-40 w-40 rounded-full bg-gradient-to-b from-primary/10 to-card blur-md" />
+          <div className="relative z-10">
+            <ServerStack01 className="mb-4 xs:mb-6 h-8 xs:h-10 w-8 xs:w-10 sm:h-12 sm:w-12" />
+            <h4 className="mb-3 xs:mb-4 font-medium text-foreground text-lg xs:text-xl transition-colors duration-300 group-hover:text-primary sm:text-2xl">
+              Código Limpo & Escalável
+            </h4>
+            <p className="font-normal text-foreground/30 text-sm xs:text-base leading-6 transition-colors duration-300 group-hover:text-foreground/50">
+              Arquitetura bem estruturada e código legível que facilita
+              manutenção e futuras expansões
+            </p>
+          </div>
+        </div>
+
+        <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-b from-secondary to-secondary/20 p-4 xs:p-6 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset] transition-all duration-300 ease-out hover:shadow-lg sm:col-span-2 sm:p-8">
+          <div className="-right-5 -top-5 absolute z-10 h-40 w-40 rounded-full bg-gradient-to-b from-primary/10 to-card blur-md" />
+          <div className="relative z-10">
+            <Rocket className="mb-4 xs:mb-6 h-8 xs:h-10 w-8 xs:w-10 sm:h-12 sm:w-12" />
+            <h4 className="mb-3 xs:mb-4 font-medium text-foreground text-lg xs:text-xl transition-colors duration-300 group-hover:text-primary sm:text-2xl">
+              Segurança & Confiabilidade
+            </h4>
+            <p className="font-normal text-foreground/30 text-sm xs:text-base leading-6 transition-colors duration-300 group-hover:text-foreground/50">
+              Implementação de boas práticas de segurança e testes automatizados
+              para máxima confiabilidade
+            </p>
           </div>
         </div>
       </div>

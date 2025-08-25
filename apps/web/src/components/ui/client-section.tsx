@@ -1,4 +1,4 @@
-import img from 'next/image';
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   Tooltip,
@@ -6,19 +6,21 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '../animate-ui/radix/tooltip';
-import { Facebook01 } from '../icons/facebook-01';
 import { Github } from '../icons/github';
 import { Instagram } from '../icons/instagram';
-import { Link01 } from '../icons/link-01';
 import { Linkedin01 } from '../icons/linkedin-01';
 import { QuoteUp } from '../icons/quote-up';
 import { Twitter } from '../icons/twitter';
 
 export default function ClientSection() {
   return (
-    <section className="mt-4" style={{ opacity: 1, transform: 'none' }}>
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
-        <div className="rounded-[20px] bg-secondary p-6 sm:p-8 lg:col-span-1">
+    <section
+      className="mt-6 xs:mt-8 sm:mt-10 md:mt-12"
+      id="about"
+      style={{ opacity: 1, transform: 'none' }}
+    >
+      <div className="grid grid-cols-1 gap-4 xs:gap-6 lg:grid-cols-3 lg:gap-8">
+        <div className="rounded-2xl bg-secondary p-4 xs:p-6 sm:p-8 lg:col-span-1">
           <h3 className="mb-4 font-medium text-2xl text-foreground sm:text-3xl">
             O que os clientes dizem
           </h3>
@@ -33,7 +35,12 @@ export default function ClientSection() {
                   Eduardo Silva
                 </h4>
                 <p className="mt-1 font-normal text-base text-foreground/50">
-                  <span className="text-primary">Diretor & CEO</span>
+                  <span className="text-primary">
+                    Diretor & CEO{' '}
+                    <Link href="https://petroend.com.br" target="_blank">
+                      PetroEND
+                    </Link>
+                  </span>
                 </p>
               </div>
               <QuoteUp className="h-auto w-16 text-muted-foreground/15 sm:w-20" />
@@ -41,28 +48,28 @@ export default function ClientSection() {
           </div>
         </div>
 
-        <div className="relative flex flex-col justify-between overflow-hidden rounded-[20px] bg-secondary lg:col-span-1">
+        <div className="relative flex flex-col justify-between overflow-hidden rounded-2xl bg-secondary lg:col-span-1">
           <div className="-top-10 absolute left-0 h-16 w-full bg-primary/30 blur-2xl" />
-          <h3 className="relative z-10 p-6 font-medium text-2xl sm:p-8 sm:text-3xl">
+          <h3 className="relative z-10 p-4 xs:p-6 font-medium text-2xl text-muted-foreground/30 sm:p-8 sm:text-3xl">
             Tecnologias que utilizo
           </h3>
-          <img
+          <Image
             alt="Software Tools"
             className="h-auto w-full"
             height={240}
-            src="https://portfolio-template-1-seven.vercel.app/_next/image?url=%2Fimages%2Fimg_6625065aaabd00c_white_a700_240x420.png&w=1080&q=75"
+            src="/technologies.svg"
             style={{ color: 'transparent' }}
             width={420}
           />
         </div>
 
-        <div className="flex flex-col justify-between lg:col-span-1">
-          <div className="grid grid-cols-4 gap-4">
+        <div className="flex flex-col justify-between space-y-6 lg:col-span-1 lg:space-y-0">
+          <div className="grid grid-cols-4 gap-3 xs:gap-4">
             <TooltipProvider>
               <Tooltip delayDuration={100}>
                 <TooltipTrigger>
                   <Link
-                    className="flex items-center justify-center rounded-[16px] bg-secondary p-4 sm:p-6"
+                    className="flex items-center justify-center rounded-2xl bg-secondary p-3 xs:p-4 sm:p-6"
                     href="https://instagram.com/felipes.dev"
                     rel="noopener noreferrer"
                     target="_blank"
@@ -77,7 +84,7 @@ export default function ClientSection() {
               <Tooltip delayDuration={100}>
                 <TooltipTrigger>
                   <Link
-                    className="flex items-center justify-center rounded-[16px] bg-secondary p-4 sm:p-6"
+                    className="flex items-center justify-center rounded-2xl bg-secondary p-3 xs:p-4 sm:p-6"
                     href="https://linkedin.com/in/felipesdev"
                     rel="noopener noreferrer"
                     target="_blank"
@@ -92,7 +99,7 @@ export default function ClientSection() {
               <Tooltip delayDuration={100}>
                 <TooltipTrigger>
                   <Link
-                    className="flex items-center justify-center rounded-[16px] bg-secondary p-4 sm:p-6"
+                    className="flex items-center justify-center rounded-2xl bg-secondary p-3 xs:p-4 sm:p-6"
                     href="https://twitter.com/felipesdev"
                     rel="noopener noreferrer"
                     target="_blank"
@@ -107,7 +114,7 @@ export default function ClientSection() {
               <Tooltip delayDuration={100}>
                 <TooltipTrigger>
                   <Link
-                    className="flex items-center justify-center rounded-[16px] bg-secondary p-4 sm:p-6"
+                    className="flex items-center justify-center rounded-2xl bg-secondary p-3 xs:p-4 sm:p-6"
                     href="https://github.com/felipesdev"
                     rel="noopener noreferrer"
                     target="_blank"
@@ -122,7 +129,7 @@ export default function ClientSection() {
             </TooltipProvider>
           </div>
 
-          <div className="relative overflow-hidden rounded-[20px] bg-secondary p-6 sm:p-8">
+          <div className="relative overflow-hidden rounded-2xl bg-secondary p-4 xs:p-6 sm:p-8">
             <div className="-bottom-10 absolute right-0 h-16 w-1/2 bg-primary/20 blur-2xl" />
             <h2 className="font-medium text-6xl text-foreground leading-tight sm:text-7xl md:text-[100px]">
               5+

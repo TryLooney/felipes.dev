@@ -15,7 +15,9 @@
 		"dev:web": "turbo -F web dev",
 		"dev:server": "turbo -F server dev"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"swiper": "^11.2.10"
+	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.0",
 		"oxlint": "^1.12.0",
