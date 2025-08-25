@@ -144,7 +144,7 @@ function CodeEditor({
   return (
     <div
       className={cn(
-        'relative flex h-[400px] w-[600px] flex-col overflow-hidden rounded-xl border border-border bg-muted/50',
+        'relative flex h-[400px] w-full max-w-full flex-col overflow-hidden rounded-xl border border-border bg-muted/50',
         className
       )}
       data-slot="code-editor"
@@ -208,10 +208,14 @@ function CodeEditor({
       <div
         className="relative h-[calc(100%-2.75rem)] w-full flex-1 overflow-auto bg-black/25 p-4 font-mono text-sm"
         ref={editorRef}
+        style={{
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'rgba(255,255,255,0.3) transparent',
+        }}
       >
         <div
           className={cn(
-            '[&>pre,_&_code]:!bg-transparent [&_code]:!text-[13px] [&>pre,_&_code]:border-none [&>pre,_&_code]:[background:transparent_!important]',
+            '[&>pre,_&_code]:!bg-transparent [&_code]:!text-[13px] [&>pre,_&_code]:border-none [&>pre,_&_code]:[background:transparent_!important] [&>pre]:max-w-full [&>pre]:overflow-x-auto [&>pre]:whitespace-pre [&>pre]:break-words',
             cursor &&
               !isDone &&
               "[&_.line:last-of-type::after]:-translate-px [&_.line:last-of-type::after]:inline-block [&_.line:last-of-type::after]:w-[1ch] [&_.line:last-of-type::after]:animate-pulse [&_.line:last-of-type::after]:content-['|']"

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { ArrowRight01 } from '../icons/arrow-right-01';
 import { Bulb } from '../icons/bulb';
 import { ComputerDesk01 } from '../icons/computer-desk-01';
@@ -32,12 +33,15 @@ export default function ServicesSection() {
             Análise completa do seu negócio para criar uma estratégia digital
             que aumenta vendas e melhora a experiência dos seus clientes.
           </p>
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-base text-foreground/60">
+          <Link
+            className="flex items-center gap-2 transition-colors duration-300 hover:text-primary"
+            href="/servicos/criacao-de-conceitos"
+          >
+            <span className="font-semibold text-base text-foreground">
               Saiba Mais
             </span>
-            <ArrowRight01 className="h-6 w-6 text-foreground/60" />
-          </div>
+            <ArrowRight01 className="h-6 w-6" />
+          </Link>
         </div>
 
         <div className="relative overflow-hidden rounded-[20px] bg-gradient-to-b from-secondary to-secondary/20 p-8 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset] sm:p-10">
@@ -50,12 +54,15 @@ export default function ServicesSection() {
             Criação de interfaces intuitivas e experiências que convertem
             visitantes em clientes, aumentando suas vendas online.
           </p>
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-base text-foreground/60">
+          <Link
+            className="flex items-center gap-2 transition-colors duration-300 hover:text-primary"
+            href="/servicos/prototipagem"
+          >
+            <span className="font-semibold text-base text-foreground">
               Saiba Mais
             </span>
-            <ArrowRight01 className="h-6 w-6 text-foreground/60" />
-          </div>
+            <ArrowRight01 className="h-6 w-6" />
+          </Link>
         </div>
 
         <div className="relative overflow-hidden rounded-[20px] bg-gradient-to-b from-secondary to-secondary/20 p-8 shadow-[0px_2px_0px_0px_rgba(255,255,255,0.1)_inset] sm:p-10">
@@ -68,12 +75,15 @@ export default function ServicesSection() {
             Sites e sistemas especializados para empresas industriais, com foco
             em geração de leads qualificados e automação de processos.
           </p>
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-base text-foreground/60">
+          <Link
+            className="flex items-center gap-2 transition-colors duration-300 hover:text-primary"
+            href="/servicos/design-industrial"
+          >
+            <span className="font-semibold text-base text-foreground">
               Saiba Mais
             </span>
-            <ArrowRight01 className="h-6 w-6 text-foreground/60" />
-          </div>
+            <ArrowRight01 className="h-6 w-6" />
+          </Link>
         </div>
       </div>
     </section>
