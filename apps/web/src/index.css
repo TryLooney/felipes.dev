@@ -200,3 +200,16 @@ body {
   animation: scroll var(--animation-duration, 40s) linear infinite;
   animation-direction: var(--animation-direction, normal);
 }
+
+/* Code Editor Scroll Fix */
+[data-slot="code-editor"] pre {
+  white-space: pre !important;
+  overflow-x: auto !important;
+  max-width: 100% !important;
+  word-wrap: normal !important;
+}
+
+[data-slot="code-editor"] code {
+  white-space: pre !important;
+  word-wrap: normal !important;
+}

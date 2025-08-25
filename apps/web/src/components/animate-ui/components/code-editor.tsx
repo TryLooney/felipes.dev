@@ -215,7 +215,7 @@ function CodeEditor({
       >
         <div
           className={cn(
-            '[&>pre,_&_code]:!bg-transparent [&_code]:!text-[13px] [&>pre,_&_code]:border-none [&>pre,_&_code]:[background:transparent_!important] [&>pre]:max-w-full [&>pre]:overflow-x-auto [&>pre]:whitespace-pre [&>pre]:break-words',
+            '[&>pre,_&_code]:!bg-transparent [&_code]:!text-[13px] [&>pre,_&_code]:border-none [&>pre,_&_code]:[background:transparent_!important]',
             cursor &&
               !isDone &&
               "[&_.line:last-of-type::after]:-translate-px [&_.line:last-of-type::after]:inline-block [&_.line:last-of-type::after]:w-[1ch] [&_.line:last-of-type::after]:animate-pulse [&_.line:last-of-type::after]:content-['|']"
